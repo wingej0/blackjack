@@ -4,15 +4,18 @@ from player import Player
 from turn import Turn
 
 def main():
-    numberOfPlayers = int(input("How many players (1-5)? "))
     players = {}
-    if 1 <= numberOfPlayers <=5:
-        i = 1
-        while i <= numberOfPlayers:
-            players[i] = Player(i)
-            i += 1
-    else:
-        print("Try again!")
+    numberOfPlayers = 0
+    while numberOfPlayers < 1 or numberOfPlayers > 5:
+        try:
+            numberOfPlayers = int(input("How many players (1-5)? "))
+        except ValueError:
+            print("Pick a number between 1-5.")
+    
+    i = 1
+    while i <= numberOfPlayers:
+        players[i] = Player(i)
+        i += 1
 
     # Run a turn
     Turn(players)
