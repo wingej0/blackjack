@@ -1,4 +1,5 @@
 # A basic blackjack game for Python terminal
+import os
 import operator
 from player import Player
 from turn import Turn
@@ -29,6 +30,7 @@ def main():
         while True:
             newTurn = input("Do you want to keep playing (y/n)? ")
             if newTurn == "y":
+                os.system('clear')
                 Turn(newPlayers)
             elif newTurn == "n":
                 print("Thank you for playing.\n\nFinal Leaderboard:\n")

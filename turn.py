@@ -1,3 +1,4 @@
+import os
 import time
 from deck import Deck
 from hand import Hand
@@ -56,12 +57,15 @@ def Turn(players):
                     print("Your cards (Total = " + str(hand.total) + "):\n" + "\n".join(newPlayerCards) + "\n")
                     if hand.total > 21:
                         print("Bust")
+                        os.system('clear')
                         break
                 elif actions == "hold":
+                    os.system('clear')
                     break
 
     # Dealer's turn
     dealerHand = [h.__str__() for h in dealer]
+    print("Your total: " + str(hand.total))
     print("\nDealer's turn:\n" + "\n".join(dealerHand))
     time.sleep(1)
     while dealerTotal < 17:
