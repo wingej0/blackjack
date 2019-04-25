@@ -1,8 +1,7 @@
 # A basic blackjack game for Python terminal
-import os
-import operator
 from player import Player
 from turn import Turn
+from playerRefresh import playerRefresh
 
 def main():
     players = {}
@@ -19,25 +18,13 @@ def main():
         i += 1
 
     # Run a turn
-    Turn(players)
-
-    # After turn ask if they want to keep playing
-    newPlayers = {}
-    for player in players.values():
-        if player.purse > 0:
-            newPlayers[player.playerNumber] = player
-    if newPlayers:
-        while True:
-            newTurn = input("Do you want to keep playing (y/n)? ")
-            if newTurn == "y":
-                os.system('clear')
-                Turn(newPlayers)
-            elif newTurn == "n":
-                print("Thank you for playing.\n\nFinal Leaderboard:\n")
-                for player in (sorted(players.values(), key=operator.attrgetter('purse'), reverse=True)):
-                    print(player)
-                break
-    else:
-        print("\nNo one has money.  GAME OVER!")
+    n = 1
+    while True:
+        newPlayers = playerRefresh(players, n)
+        if newPlayers:
+            Turn(newPlayers)
+            n += 1
+        else:
+            break
 
 main()

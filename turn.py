@@ -57,10 +57,8 @@ def Turn(players):
                     print("Your cards (Total = " + str(hand.total) + "):\n" + "\n".join(newPlayerCards) + "\n")
                     if hand.total > 21:
                         print("Bust")
-                        os.system('clear')
                         break
                 elif actions == "hold":
-                    os.system('clear')
                     break
 
     # Dealer's turn
